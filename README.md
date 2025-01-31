@@ -1,5 +1,5 @@
 # vf-advanced-java-development
-Project: Make an E-commerce Website for Sporty Shoes
+## Project: Make an E-commerce Website for Sporty Shoes
 
 ### Project objective:
 
