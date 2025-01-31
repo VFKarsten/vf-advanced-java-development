@@ -50,7 +50,7 @@ click **Generate** and download.
 1. Unzip the .zip download and copy the package into the project directory ~/.
 2. open the IDE and and click in the Menu/Open/project directory/'project'
    --> new project is going to be created
-3. choose in "Project Settings" the needed SDK: ***corretto-17*** (if not available; download)
+3. choose in "Project Settings" the needed Sofware Development Kit (SDK): ***corretto-17*** (if not available; download)
 
 > For test purposes with JUnit 5 we need to add JUnit as a dependency
 1. Open pom.xml in the root directory of your project.
