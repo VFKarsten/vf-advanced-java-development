@@ -20,7 +20,7 @@ You’re asked to develop a prototype of the application. It will be then presen
 
 ### Start Intellij IDE project - spring initializr
 To create a Springboot project in the IDE, go to the page https://start.spring.io/ to assemble the necessary components.
-Choose:
+> Choose:
 - Project = Maven
 - Language = Java
 - Spring Boot = 3.4.2
@@ -28,14 +28,14 @@ Choose:
 - Packaging = Jar
 - Java = 17
 
-The following dependencies are needed:
+> The following dependencies are needed:
 1. Spring Web
 2. Spring Boot Dev Tools
 3. Spring Data JPA
 4. MySQL Driver
 
 
-For test purposes with JUnit 5 we need to add JUnit as a dependency
+> For test purposes with JUnit 5 we need to add JUnit as a dependency
 1. Open pom.xml in the root directory of your project.
 2. In pom.xml, press AltInsert and select Dependency.
 3. In the dialog that opens, type org.junit.jupiter:junit-jupiter in the search field. Locate the necessary dependency in the search results and click Add.
