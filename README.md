@@ -70,3 +70,29 @@ docker run \
   --publish 3307:3306 \
 mysql
 ```
+
+### Define the application properties - ServerPort, Database, JPA
+> open application.propertis, copy the following properties:
+```
+spring.application.name=Webdb
+
+#if you need to change the port of the tomcat the do the below step
+server.port=8089
+
+#MySQL database
+spring.datasource.driverClassName=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/JavaProject
+spring.datasource.username=root
+spring.datasource.password=123456
+
+#jpa-hibernate
+spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+#converts the pojo into the DDL formated table
+#create- if the table is exiting or not existing this command deletes the table and creates a new table
+# update - if table exists it doesnt delete the table  / if table doesnt exists it creates it
+spring.jpa.hibernate.ddl-auto=update
+
+#sql on my server
+spring.jpa.show-sql=true
+```
+ 
