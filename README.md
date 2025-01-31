@@ -22,6 +22,11 @@ You’re asked to develop a prototype of the application. It will be then presen
 - Browse the list of users who have signed up and be able to search users
 - See purchase reports filtered by date and category
 
+![image](https://github.com/user-attachments/assets/2e83a3ed-f558-4cdd-8d69-d84009bc5b1c)
+
+*click Generate* and Download.
+
+
 ## Prerequisites
 
 ### Start Intellij IDE project - spring initializr
