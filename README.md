@@ -95,4 +95,6 @@ spring.jpa.hibernate.ddl-auto=update
 #sql on my server
 spring.jpa.show-sql=true
 ```
- 
+
+### Connect MySQL database with project
+> precondition is an installed database plugin (f.e. "DataBaseManager")
