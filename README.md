@@ -101,6 +101,9 @@ spring.jpa.show-sql=true
 1. Open the DB Browser
 2. Click "New Collection" and choose "MySQL"
 3. Fill in the necessary information analog the lines of application properties (MySQL)
+
 ![image](https://github.com/user-attachments/assets/6984e3e4-af1d-4002-99d7-6acb68911e89)
+
+4. Test connection and if working click "Apply"
 
 
