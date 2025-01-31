@@ -3,6 +3,10 @@ Advanced Java Development
 
 ## Prerequisites
 
+### Start Intellij IDE project - spring initializr
+To create a Springboot project in the IDE, go to the page https://start.spring.io/ to assemble the necessary components.
+
+
 ### Start MySQL - database as a docker container
 To start the database as a docker container, run the following command:
 ```
