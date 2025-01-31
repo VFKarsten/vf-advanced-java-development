@@ -42,8 +42,8 @@ To create a Springboot project in the IDE, go to the page https://start.spring.i
 
 ![image](https://github.com/user-attachments/assets/2e83a3ed-f558-4cdd-8d69-d84009bc5b1c)
 
-**click Generate** and download.
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+click Generate and download.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Start Intellij IDE project - create project in Intellij IDE
 > To create a Springboot project in the IDE the following steps has to proceed:
 1. Unzip the .zip download and copy the package into the project directory ~/.
