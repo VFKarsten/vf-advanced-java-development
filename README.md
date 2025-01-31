@@ -22,11 +22,6 @@ You’re asked to develop a prototype of the application. It will be then presen
 - Browse the list of users who have signed up and be able to search users
 - See purchase reports filtered by date and category
 
-![image](https://github.com/user-attachments/assets/2e83a3ed-f558-4cdd-8d69-d84009bc5b1c)
-
-*click Generate* and Download.
-
-
 ## Prerequisites
 
 ### Start Intellij IDE project - spring initializr
@@ -51,6 +46,16 @@ To create a Springboot project in the IDE, go to the page https://start.spring.i
 2. In pom.xml, press AltInsert and select Dependency.
 3. In the dialog that opens, type org.junit.jupiter:junit-jupiter in the search field. Locate the necessary dependency in the search results and click Add.
 4. When the dependency is added to pom.xml, click Reimport All Maven Projects in the Maven tool window to import the changes.
+
+![image](https://github.com/user-attachments/assets/2e83a3ed-f558-4cdd-8d69-d84009bc5b1c)
+
+*click Generate* and download.
+
+### Start Intellij IDE project - create project in Intellij IDE
+> To create a Springboot project in the IDE the following steps has to proceed:
+1. Unzip the .zip download and copy the package into the project directory ~/.
+2. open the IDE and and click in the Menu/Open/project directory/'project'
+   --> new project is going to be created
 
 
 ### Start MySQL - database as a docker container
