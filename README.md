@@ -40,13 +40,6 @@ To create a Springboot project in the IDE, go to the page https://start.spring.i
 3. Spring Data JPA
 4. MySQL Driver
 
-
-> For test purposes with JUnit 5 we need to add JUnit as a dependency
-1. Open pom.xml in the root directory of your project.
-2. In pom.xml, press AltInsert and select Dependency.
-3. In the dialog that opens, type org.junit.jupiter:junit-jupiter in the search field. Locate the necessary dependency in the search results and click Add.
-4. When the dependency is added to pom.xml, click Reimport All Maven Projects in the Maven tool window to import the changes.
-
 ![image](https://github.com/user-attachments/assets/2e83a3ed-f558-4cdd-8d69-d84009bc5b1c)
 
 *click Generate* and download.
@@ -57,9 +50,15 @@ To create a Springboot project in the IDE, go to the page https://start.spring.i
 2. open the IDE and and click in the Menu/Open/project directory/'project'
    --> new project is going to be created
 
+> For test purposes with JUnit 5 we need to add JUnit as a dependency
+1. Open pom.xml in the root directory of your project.
+2. In pom.xml, press AltInsert and select Dependency.
+3. In the dialog that opens, type org.junit.jupiter:junit-jupiter in the search field. Locate the necessary dependency in the search results and click Add.
+4. When the dependency is added to pom.xml, click Reimport All Maven Projects in the Maven tool window to import the changes.
+
 
 ### Start MySQL - database as a docker container
-To start the database as a docker container, run the following command:
+> To start the database as a docker container, run the following command:
 ```
 docker run \
   --name mysql-db \
