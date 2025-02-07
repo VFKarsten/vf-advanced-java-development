@@ -1,11 +1,10 @@
 package com.ecommerce.controller;
 
-
-
+import com.ecommerce.exception.ResourceNotFoundException;
+import com.ecommerce.exception.UnauthorizedException;
 import com.ecommerce.model.User;
 import com.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +27,12 @@ import java.util.Optional;
     public User updateUser(@PathVariable Long id, @RequestBody User user) {
             user.setId(id);
             return service.createOrUpdateUser(user);
+    }
+    //Get User via name and password
+    @PostMapping("/authenticate")
+    public User authenticate (@RequestParam String name, @RequestParam String password) throws ResourceNotFoundException, UnauthorizedException {
+
+            return service.authenticateUser(name, password);
     }
 
     @GetMapping(path = "/byUserId/{id}")

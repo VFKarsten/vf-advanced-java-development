@@ -1,6 +1,8 @@
 package com.ecommerce.service;
 
 
+import com.ecommerce.exception.ResourceNotFoundException;
+import com.ecommerce.exception.UnauthorizedException;
 import com.ecommerce.model.User;
 import com.ecommerce.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    private static UserRepo repo;
+    private UserRepo repo;
 
 
     public User createOrUpdateUser(User user) {
@@ -36,6 +38,17 @@ public class UserService {
         repo.deleteById(id);
     }
 
+    public User authenticateUser(String name, String password) throws ResourceNotFoundException, UnauthorizedException {
+        Optional<User> user = repo.findByName(name);
 
-
+        if (user.isPresent()){
+            if (!user.get().getPassword().equals(password)){
+                //password don't match: raise exception
+                throw new UnauthorizedException("username or password not correct");
+            }
+        }
+        else
+            throw new ResourceNotFoundException("user not found");
+        return user.get();
+        }
 }
