@@ -14,6 +14,16 @@ public class Product {
     private String price;
     private String imagePath;
 
+    public Product() {
+    }
+
+    public Product(Long id, String name, String price, String imagePath) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.imagePath = imagePath;
+    }
+
     public Long getId() {
         return id;
     }

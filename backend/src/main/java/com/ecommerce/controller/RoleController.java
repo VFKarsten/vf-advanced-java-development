@@ -3,10 +3,7 @@ package com.ecommerce.controller;
 import com.ecommerce.model.Role;
 import com.ecommerce.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/roles")
@@ -17,5 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
             public Role createRole(@RequestBody Role role) {
 
             return service.createRole(role);
+    }
+
+    //Delete role by id
+    @GetMapping(path = "/byRoleId/{id}")
+    public String deleteById (@PathVariable("id") Long id) {
+        service.deleteById(id);
+        return "Delete by id called";
     }
 }

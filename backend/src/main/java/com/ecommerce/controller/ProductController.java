@@ -24,6 +24,12 @@ public class ProductController {
         String response = service.addProduct(name, price, file);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+    //update the product
+    @PostMapping(path="/update/{id}")
+    public ResponseEntity<String> updateProduct(@PathVariable Long id, @RequestParam("name") String name, @RequestParam("price") String price, @RequestParam("image") MultipartFile file) throws IOException {
+        String response = service.updateProduct(id, name, price, file);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProducts(){
@@ -38,6 +44,10 @@ public class ProductController {
     }
 
     //delete the product
+    @DeleteMapping(path = "/byProductId/{id}")
+    public String deleteById(@PathVariable("id") Long id){
+        service.deleteById(id);
+        return "Delete by id called";
+    }
 
-    //update the product
 }

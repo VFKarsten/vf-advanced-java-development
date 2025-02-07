@@ -13,18 +13,29 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    private UserRepo repo;
+    private static UserRepo repo;
 
-    public User createUser(User user) {
+
+    public User createOrUpdateUser(User user) {
+
         return repo.save(user);
     }
 
     public Optional<User> findById(Long id) {
+
         return repo.findById(id);
     }
 
     public List<String> findByRoleId(Long id) {
+
         return repo.findByRoleId(id);
     }
+
+    public void deleteById(Long id){
+
+        repo.deleteById(id);
+    }
+
+
 
 }

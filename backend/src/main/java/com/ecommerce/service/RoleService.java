@@ -15,4 +15,8 @@ public class RoleService {
 
         return repo.save(roles);
     }
+
+    public void deleteById(Long id) {
+        repo.deleteById(id);
+    }
 }
