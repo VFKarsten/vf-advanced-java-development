@@ -2,11 +2,16 @@ package com.ecommerce.controller;
 
 import com.ecommerce.exception.ResourceNotFoundException;
 import com.ecommerce.exception.UnauthorizedException;
+import com.ecommerce.model.Product;
 import com.ecommerce.model.User;
 import com.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,11 +21,11 @@ import java.util.Optional;
         @Autowired
         UserService service;
 
-        @PostMapping
-            public User createUser(@RequestBody User user) {
-
-            return service.createOrUpdateUser(user);
+    @PostMapping("/add")
+    public User createUser (@RequestBody User user) throws ResourceNotFoundException {
+        return service.createOrUpdateUser(user);
     }
+
 
     //Update User attribute by id
     @PostMapping(path = "/update/{id}")
@@ -39,6 +44,11 @@ import java.util.Optional;
     public Optional<User> getUsers(@PathVariable Long id){
 
             return service.findById(id);
+    }
+    @GetMapping("/all")
+    public ResponseEntity<List<User>> getAllUsers(){
+        List<User> users=service.getAllUsers();
+        return ResponseEntity.status(HttpStatus.OK).body(users);
     }
 
     @GetMapping(path = "/byRoleId/{id}")

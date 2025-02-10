@@ -16,4 +16,6 @@ public interface UserRepo extends JpaRepository <User, Long> {
     String sqlByName="select user id, user name, user password, user role from User user where user.name=:name";
     @Query(sqlByName)
     Optional<User> findByName(@Param("name") String name);
+
+    boolean existsByName(String name);
 }

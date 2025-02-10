@@ -47,6 +47,7 @@ function Auth() {
       setErrorMessage('Es gab ein Problem mit der Authentifizierung');
     } finally {
       setIsLoading(false);
+      window.location.reload(false)
     }
   };
 
