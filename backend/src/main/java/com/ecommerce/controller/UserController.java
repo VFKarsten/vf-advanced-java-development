@@ -30,9 +30,9 @@ import java.util.Optional;
     }
     //Get User via name and password
     @PostMapping("/authenticate")
-    public User authenticate (@RequestParam String name, @RequestParam String password) throws ResourceNotFoundException, UnauthorizedException {
+    public User authenticate (@RequestBody User user) throws ResourceNotFoundException, UnauthorizedException {
 
-            return service.authenticateUser(name, password);
+            return service.authenticateUser(user.getName(), user.getPassword());
     }
 
     @GetMapping(path = "/byUserId/{id}")
