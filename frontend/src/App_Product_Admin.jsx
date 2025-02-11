@@ -260,9 +260,8 @@ function App() {
   // Logout-Funktion
   const handleLogout = () => {
     // Hier entfernst du das Authentifizierungs-Token (wenn verwendet) oder machst eine andere Logout-Logik
-    localStorage.removeItem("authToken"); // Beispiel: Entfernen des Tokens aus dem lokalen Speicher
-    alert("You have logged out successfully!");
-    window.location.href = "/login"; // Umleitung zur Login-Seite nach dem Logout
+    localStorage.removeItem("role"); // Beispiel: Entfernen des Tokens aus dem lokalen Speicher
+    window.location.reload()
   };
 
   return (
@@ -293,7 +292,7 @@ function App() {
           required
         />
         <label>Product Image</label>
-        <input type="file" onChange={handleFileChange} required />
+        <input type="file" onChange={handleFileChange} />
         <button type="submit">{id ? "Update Product" : "Upload Product"}</button>
       </form>
 

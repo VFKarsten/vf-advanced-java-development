@@ -3,6 +3,7 @@ package com.ecommerce.controller;
 
 import com.ecommerce.model.Product;
 import com.ecommerce.service.ProductService;
+import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,7 +27,7 @@ public class ProductController {
     }
     //update the product
     @PostMapping(path="/update/{id}")
-    public ResponseEntity<String> updateProduct(@PathVariable Long id, @RequestParam("name") String name, @RequestParam("price") String price, @RequestParam("image") MultipartFile file) throws IOException {
+    public ResponseEntity<String> updateProduct(@PathVariable Long id, @RequestParam("name") String name, @RequestParam("price") String price, @Nullable @RequestParam("image") MultipartFile file) throws IOException {
         String response = service.updateProduct(id, name, price, file);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

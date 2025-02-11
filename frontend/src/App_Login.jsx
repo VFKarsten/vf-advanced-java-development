@@ -62,7 +62,7 @@ function Auth() {
     setErrorMessage('');
 
     try {
-      const response = await fetch('http://localhost:8089/users', {
+      const response = await fetch('http://localhost:8089/users/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ function Auth() {
   // Handle Logout
   const handleLogout = () => {
     localStorage.removeItem('role');  // Clear user role
-    navigate('/login');  // Navigate to login page
+    navigate('/');  // Navigate to login page
   };
 
   return (
