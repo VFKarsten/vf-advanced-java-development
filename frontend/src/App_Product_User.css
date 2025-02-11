@@ -1,103 +1,140 @@
-/* Container for the whole page */
+/* Grundlegendes Layout für größere Bildschirme */
 .container {
   width: 80%;
   margin: 0 auto;
-  font-family: Arial, sans-serif;
   padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
-/* Header Styles */
-h1, h3 {
-  text-align: center;
+h1, h2 {
   color: #333;
 }
 
-/* Form Styles */
-form {
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-form label {
-  display: block;
-  margin: 10px 0 5px;
-  font-weight: bold;
-}
-
-form input {
-  width: 100%;
-  padding: 8px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-form button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-form button:hover {
-  background-color: #45a049;
-}
-
-/* Filter & Sort Styles */
-.filter-sort {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.filter-sort div {
-  width: 30%;
-  margin-bottom: 15px;
-}
-
-.filter-sort label {
-  font-weight: bold;
-}
-
-.filter-sort input,
-.filter-sort select {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-/* Table Styles */
+/* Product Table und Form */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
-table th,
-table td {
-  padding: 12px;
+th, td {
+  padding: 10px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border: 1px solid #ddd;
 }
 
-table th {
+th {
   background-color: #f4f4f4;
-  font-weight: bold;
 }
 
-table tr:hover {
-  background-color: #f1f1f1;
+button {
+  padding: 8px 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
-table img {
+button:hover {
+  background-color: #45a049;
+}
+
+/* Formulare für Produkte und Benutzer */
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+label {
+  margin: 8px 0 4px;
+}
+
+input {
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  width: 100px;
-  height: 100px;
+  width: 100%;
+}
+
+input[type="file"] {
+  padding: 4px;
+}
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.filter label {
+  margin-right: 10px;
+}
+
+.filter input {
+  width: 30%;
+}
+
+@media (min-width: 1200px) {
+  /* Layout anpassen für breitere Bildschirme */
+  .container {
+    width: 70%;
+  }
+
+  .filter {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  table {
+    margin-top: 30px;
+  }
+
+  form {
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  form label, form input {
+    width: 45%;
+  }
+
+  button {
+    width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Für kleinere Bildschirme (Tablets) */
+  .container {
+    width: 95%;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  input[type="file"] {
+    width: 100%;
+  }
+
+  table {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Für sehr kleine Bildschirme (Handys) */
+  table {
+    font-size: 12px;
+  }
+
+  .filter input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }

@@ -3,14 +3,15 @@ package com.ecommerce.service;
 
 import com.ecommerce.exception.ResourceNotFoundException;
 import com.ecommerce.exception.UnauthorizedException;
-import com.ecommerce.model.Product;
+import com.ecommerce.model.Role;
 import com.ecommerce.model.User;
+import com.ecommerce.repo.RoleRepo;
 import com.ecommerce.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+
+
 import java.util.List;
 import java.util.Optional;
 
@@ -20,19 +21,42 @@ public class UserService {
     @Autowired
     private UserRepo repo;
 
+    @Autowired
+    private RoleRepo roleRepo;
 
-    public User createOrUpdateUser(User user) {
 
+    public User createOrUpdateUser(User user) throws ResourceNotFoundException {
+        Optional<User> originalUser = null;
+
+        if (user.getId() != null) {
+            originalUser = repo.findById(user.getId());
+        }
+
+        if (user.getRole() == null) {
+            // User update withoud given role
+            if (originalUser != null) {
+                user.setRole(originalUser.get().getRole());
+            } else {
+                // new user creation.
+                Optional<Long> roleId = roleRepo.findUserRole("user");
+                if (roleId.isPresent()) {
+                    Role role = new Role();
+                    role.setId(roleId.get());
+                    user.setRole(role);
+                }
+                else
+                    throw new ResourceNotFoundException("Role with role name 'user' not found.");
+            }
+
+        }
         return repo.save(user);
     }
 
     public Optional<User> findById(Long id) {
-
         return repo.findById(id);
     }
 
     public List<String> findByRoleId(Long id) {
-
         return repo.findByRoleId(id);
     }
 
@@ -53,7 +77,7 @@ public class UserService {
         else
             throw new ResourceNotFoundException("user not found");
         return user.get();
-        }
+    }
 
     public List<User> getAllUsers() {
 

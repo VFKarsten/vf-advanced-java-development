@@ -2,16 +2,13 @@ package com.ecommerce.controller;
 
 import com.ecommerce.exception.ResourceNotFoundException;
 import com.ecommerce.exception.UnauthorizedException;
-import com.ecommerce.model.Product;
 import com.ecommerce.model.User;
 import com.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,23 +18,23 @@ import java.util.Optional;
         @Autowired
         UserService service;
 
+    //Add User
     @PostMapping("/add")
     public User createUser (@RequestBody User user) throws ResourceNotFoundException {
         return service.createOrUpdateUser(user);
     }
 
-
     //Update User attribute by id
     @PostMapping(path = "/update/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User user) {
-            user.setId(id);
-            return service.createOrUpdateUser(user);
+    public User updateUser(@PathVariable Long id, @RequestBody User user) throws ResourceNotFoundException {
+        user.setId(id);
+        return service.createOrUpdateUser(user);
     }
+ 
     //Get User via name and password
     @PostMapping("/authenticate")
     public User authenticate (@RequestBody User user) throws ResourceNotFoundException, UnauthorizedException {
-
-            return service.authenticateUser(user.getName(), user.getPassword());
+        return service.authenticateUser(user.getName(), user.getPassword());
     }
 
     @GetMapping(path = "/byUserId/{id}")

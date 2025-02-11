@@ -21,33 +21,32 @@ function Auth() {
     setIsLoading(true);
     setErrorMessage('');
 
-    // Hinzufügen der Role ID für den User (ID 2)
-    const role_id = 2
-
     try {
       const response = await fetch('http://localhost:8089/users/authenticate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, password, role_id }),
+        body: JSON.stringify({ name, password }),
       });
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('token', data.token); // Speichere das Token
+        localStorage.setItem('role', data.role.role); // Save role of user.
         setName('');
         setPassword('');
         navigate('/'); // Weiter zur Hauptseite
       } else {
+        localStorage.removeItem('role')
         setErrorMessage('Benutzername oder Passwort sind falsch');
       }
     } catch (error) {
+      localStorage.removeItem('role')
       console.error('Fehler bei der Authentifizierung:', error);
       setErrorMessage('Es gab ein Problem mit der Authentifizierung');
     } finally {
       setIsLoading(false);
-      window.location.reload(false)
+      window.location.reload();
     }
   };
 
@@ -72,7 +71,9 @@ function Auth() {
       });
 
       if (response.ok) {
-        navigate('/login');  // Weiter zur Login-Seite nach erfolgreicher Registrierung
+        setIsRegistering(false)
+        setPassword(null)
+        navigate('/');  // Weiter zur Login-Seite nach erfolgreicher Registrierung
       } else {
         setErrorMessage('Fehler bei der Registrierung');
       }
@@ -82,6 +83,12 @@ function Auth() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // Handle Logout
+  const handleLogout = () => {
+    localStorage.removeItem('role');  // Clear user role
+    navigate('/login');  // Navigate to login page
   };
 
   return (
@@ -129,6 +136,11 @@ function Auth() {
           </div>
         )}
       </div>
+
+      {/* Show Logout button if user is logged in */}
+      {localStorage.getItem('role') && (
+        <button onClick={handleLogout}>Logout</button>
+      )}
     </div>
   );
 }
