@@ -88,6 +88,7 @@ function App() {
 
   const handleLogout = () => {
     localStorage.removeItem("role");
+    localStorage.removeItem('userID')
     window.location.reload();
   };
 
@@ -102,28 +103,34 @@ function App() {
     }
 
     try {
-      const response = await fetch(`http://localhost:8089/users/update/${id}`, {
+        const id = localStorage.getItem('userID')
+
+        const formData = new FormData();
+            formData.append("oldPassword", oldPassword);
+            formData.append("newPassword", newPassword);
+
+        const response = await fetch(`http://localhost:8089/users/changePwd/${id}`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          oldPassword: oldPassword,
-          newPassword: newPassword,
-        }),
+        body: formData
       });
 
       if (response.ok) {
         setPasswordSuccess("Password updated successfully.");
         setPasswordError("");
-      } else {
+        setOldPassword("");
+        setNewPassword("");
+        setConfirmPassword("");
+        alert(passwordSuccess)
+       } else {
         setPasswordError("Failed to update password. Please check your old password.");
         setPasswordSuccess("");
+        alert("Failed to update password. Please check your old password.")
       }
     } catch (error) {
       console.error("Error:", error);
       setPasswordError("An error occurred while changing your password.");
       setPasswordSuccess("");
+      alert(error)
     }
   };
 

@@ -38,7 +38,7 @@ public class UserService {
                 user.setRole(originalUser.get().getRole());
             } else {
                 // new user creation.
-                Optional<Long> roleId = roleRepo.findUserRole("user");
+                Optional<Long> roleId = roleRepo.findUserRole("User");
                 if (roleId.isPresent()) {
                     Role role = new Role();
                     role.setId(roleId.get());
@@ -84,4 +84,18 @@ public class UserService {
         return repo.findAll();
     }
 
+    public User changePassword(Long id, String oldPassword, String newPassword) throws ResourceNotFoundException, UnauthorizedException {
+        Optional<User> u = repo.findById(id);
+        if (u.isPresent()){
+            User user = u.get();
+            if (user.getPassword().equals(oldPassword)){
+                user.setPassword(newPassword);
+                return repo.save(user);
+            }
+            throw new UnauthorizedException("Old password is not correct!");
+
+        }
+
+        throw new ResourceNotFoundException("No user found with id " + id);
+    }
 }

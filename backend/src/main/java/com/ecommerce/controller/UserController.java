@@ -30,6 +30,11 @@ import java.util.Optional;
         user.setId(id);
         return service.createOrUpdateUser(user);
     }
+
+    @PostMapping(path = "/changePwd/{id}")
+    public User updateUser(@PathVariable Long id, @RequestParam String oldPassword, @RequestParam String newPassword) throws UnauthorizedException, ResourceNotFoundException {
+        return service.changePassword(id, oldPassword, newPassword);
+    }
  
     //Get User via name and password
     @PostMapping("/authenticate")

@@ -1,4 +1,4 @@
-// App.jsx mit React Router
+// App.jsx with React Router
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import App_Product_Admin from "./App_Product_Admin";
 import App_Login from "./App_Login"; // Correctly import App_Login

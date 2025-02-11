@@ -173,7 +173,7 @@ function App() {
     }
   };
 
-  const handleUpdateUser = async (e) => {
+  const handleUpdateUser = async (userId) => {
     e.preventDefault();
     const user = { name: userName, password: userPassword };
 
@@ -261,6 +261,7 @@ function App() {
   const handleLogout = () => {
     // Hier entfernst du das Authentifizierungs-Token (wenn verwendet) oder machst eine andere Logout-Logik
     localStorage.removeItem("role"); // Beispiel: Entfernen des Tokens aus dem lokalen Speicher
+    localStorage.removeItem('userID')
     window.location.reload()
   };
 

@@ -7,14 +7,14 @@ function Auth() {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isRegistering, setIsRegistering] = useState(false);  // Zustand, um zwischen Login und Register zu wechseln
-  const navigate = useNavigate();  // Für Navigation
+  const [isRegistering, setIsRegistering] = useState(false);  // State to switch between Login and Register
+  const navigate = useNavigate();  // For Navigation
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!name || !password) {
-      setErrorMessage('Benutzername und Passwort sind erforderlich');
+      setErrorMessage('Username und Password are required');
       return;
     }
 
@@ -33,17 +33,19 @@ function Auth() {
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem('role', data.role.role); // Save role of user.
+        localStorage.setItem('userID', data.id); //save id of user
         setName('');
         setPassword('');
-        navigate('/'); // Weiter zur Hauptseite
+        navigate('/'); // navigate to main page
       } else {
         localStorage.removeItem('role')
-        setErrorMessage('Benutzername oder Passwort sind falsch');
+        localStorage.removeItem('userID')
+        setErrorMessage('Username oder Password wrong');
       }
     } catch (error) {
       localStorage.removeItem('role')
-      console.error('Fehler bei der Authentifizierung:', error);
-      setErrorMessage('Es gab ein Problem mit der Authentifizierung');
+      console.error('Failure with Authentification:', error);
+      setErrorMessage('Problem with Authentification');
     } finally {
       setIsLoading(false);
       window.location.reload();
@@ -54,7 +56,7 @@ function Auth() {
     e.preventDefault();
 
     if (!name || !password) {
-      setErrorMessage('Benutzername und Passwort sind erforderlich');
+      setErrorMessage('Userername und Password required');
       return;
     }
 
@@ -73,13 +75,13 @@ function Auth() {
       if (response.ok) {
         setIsRegistering(false)
         setPassword(null)
-        navigate('/');  // Weiter zur Login-Seite nach erfolgreicher Registrierung
+        navigate('/');  // move to Login-page after successful registration
       } else {
-        setErrorMessage('Fehler bei der Registrierung');
+        setErrorMessage('Failure with registration');
       }
     } catch (error) {
-      console.error('Fehler bei der Registrierung:', error);
-      setErrorMessage('Es gab ein Problem bei der Registrierung');
+      console.error('Failure with registration:', error);
+      setErrorMessage('Problem with registration');
     } finally {
       setIsLoading(false);
     }
@@ -88,18 +90,19 @@ function Auth() {
   // Handle Logout
   const handleLogout = () => {
     localStorage.removeItem('role');  // Clear user role
+    localStorage.removeItem('userID')
     navigate('/');  // Navigate to login page
   };
 
   return (
     <div className="auth-container">
-      <h1>{isRegistering ? 'Registrieren' : 'Login'}</h1>
+      <h1>{isRegistering ? 'Registration' : 'Login'}</h1>
 
       {errorMessage && <div className="error-message">{errorMessage}</div>}
 
       <form onSubmit={isRegistering ? handleRegister : handleLogin}>
         <div>
-          <label>Benutzername</label>
+          <label>Userername</label>
           <input
             type="text"
             value={name}
@@ -109,7 +112,7 @@ function Auth() {
         </div>
 
         <div>
-          <label>Passwort</label>
+          <label>Password</label>
           <input
             type="password"
             value={password}
@@ -119,20 +122,20 @@ function Auth() {
         </div>
 
         <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Lade...' : isRegistering ? 'Registrieren' : 'Login'}
+          {isLoading ? 'Loading...' : isRegistering ? 'Registration' : 'Login'}
         </button>
       </form>
 
       <div>
         {isRegistering ? (
           <div>
-            Schon ein Konto?{' '}
-            <button onClick={() => setIsRegistering(false)}>Zurück zum Login</button>
+            Account available?{' '}
+            <button onClick={() => setIsRegistering(false)}>back to Login</button>
           </div>
         ) : (
           <div>
-            Noch keinen Account?{' '}
-            <button onClick={() => setIsRegistering(true)}>Jetzt registrieren</button>
+            still no Account?{' '}
+            <button onClick={() => setIsRegistering(true)}>now register</button>
           </div>
         )}
       </div>
