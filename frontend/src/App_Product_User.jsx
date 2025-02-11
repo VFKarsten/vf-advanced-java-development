@@ -142,6 +142,8 @@ function App() {
         Logout
       </button>
 
+      <h1>Product Shoe Details</h1>
+
       <div className="filter">
         <label>Filter by Name</label>
         <input

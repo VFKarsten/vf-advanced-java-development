@@ -108,4 +108,28 @@ spring.jpa.show-sql=true
 
 4. Test connection and if working click "Apply"
 
+### Create mandatory user roles:
+The following users roles are mandatory and requires:
+1. Administrator
+2. User
+
+After the backend server started, execute the following commands:
+```
+  curl -X POST http://localhost:8089/roles --header "Content-Type: application/json" --data '{"role": "Administrator"}'
+  curl -X POST http://localhost:8089/roles --header "Content-Type: application/json" --data '{"role": "User"}'
+```
+
+One initial Admin User needs to be created:
+```
+  curl -X POST http://localhost:8089/users/add --header "Content-Type: application/json" --data '{"name": "Admin","password": "admin", role": {"role": 1}}'
+```
+
+### React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
