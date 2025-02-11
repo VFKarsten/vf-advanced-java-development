@@ -3,20 +3,22 @@ package com.ecommerce.service;
 import com.ecommerce.model.Product;
 import com.ecommerce.repo.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ProductService {
 
-    private static final String FOLDER_PATH="/Users/karstenhecker/ws/images/";
+    @Value("${image.path}")
+    private String imagePath;
 
     @Autowired
     private ProductRepo repo;
@@ -50,7 +52,7 @@ public class ProductService {
     }
 
     private void prepareProductFile(MultipartFile file) throws IOException {
-        File directory=new File(FOLDER_PATH);
+        File directory=new File(imagePath);
         if(!directory.exists()){
             directory.mkdirs();
         }
@@ -68,7 +70,7 @@ public class ProductService {
         if (name.equals("null"))
             return null;
 
-        File imageFile=new File(FOLDER_PATH+name);
+        File imageFile=new File(imagePath+name);
         if(!imageFile.exists()){
             throw new IOException("Image is not found in the location");
         }
