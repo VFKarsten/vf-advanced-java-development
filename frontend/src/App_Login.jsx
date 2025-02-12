@@ -14,7 +14,7 @@ function Auth() {
     e.preventDefault();
 
     if (!name || !password) {
-      setErrorMessage('Username und Password are required');
+      setErrorMessage('Username and Password are required');
       return;
     }
 
@@ -40,7 +40,7 @@ function Auth() {
       } else {
         localStorage.removeItem('role')
         localStorage.removeItem('userID')
-        setErrorMessage('Username oder Password wrong');
+        setErrorMessage('Username or Password wrong');
       }
     } catch (error) {
       localStorage.removeItem('role')
@@ -52,6 +52,7 @@ function Auth() {
     }
   };
 
+    //Handle Register
   const handleRegister = async (e) => {
     e.preventDefault();
 

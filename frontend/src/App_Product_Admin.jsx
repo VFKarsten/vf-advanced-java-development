@@ -12,11 +12,11 @@ function App() {
     name: "",
     price: "",
     id: ""
-  }); // Filter für Name, Price und ID
+  }); // Filter for Name, Price und ID
   const [sortOrder, setSortOrder] = useState("asc");
   const [sortField, setSortField] = useState("name");
 
-  // Benutzerverwaltung
+  // User Management
   const [userId, setUserId] = useState(null);
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
@@ -26,7 +26,7 @@ function App() {
     fetchUsers();
   }, []);
 
-  // Produkte
+  // products
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
   };
@@ -122,7 +122,7 @@ function App() {
     setId(null);
   };
 
-  // Filter- und Sortierlogik für Produkte
+  // Filter- and Sort logic for products
   const filteredProducts = products
     .filter((product) =>
       product.name.toLowerCase().includes(filter.name.toLowerCase())
@@ -146,7 +146,7 @@ function App() {
       return 0;
     });
 
-  // Benutzer
+  // User
   const handleUserSubmit = async (e) => {
     e.preventDefault();
     const user = { name: userName, password: userPassword };
@@ -173,7 +173,7 @@ function App() {
     }
   };
 
-  const handleUpdateUser = async (userId) => {
+  const handleUpdateUser = async (e) => {
     e.preventDefault();
     const user = { name: userName, password: userPassword };
 
@@ -251,16 +251,16 @@ function App() {
     setUserPassword(user.password);
   };
 
-  // Sortieren der Produkte nach Feld
+  // Sort the products by field
   const handleSort = (field) => {
     setSortField(field);
     setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
   };
 
-  // Logout-Funktion
+  // Logout-function
   const handleLogout = () => {
-    // Hier entfernst du das Authentifizierungs-Token (wenn verwendet) oder machst eine andere Logout-Logik
-    localStorage.removeItem("role"); // Beispiel: Entfernen des Tokens aus dem lokalen Speicher
+    // delete the  Authentication-Token (if used) or make another Logout-Logic
+    localStorage.removeItem("role"); // Example: delete the Tokens from the locale storage
     localStorage.removeItem('userID')
     window.location.reload()
   };
@@ -297,7 +297,7 @@ function App() {
         <button type="submit">{id ? "Update Product" : "Upload Product"}</button>
       </form>
 
-      {/* Filter für Produkte */}
+      {/* Filter for Products */}
       <div className="filter">
         <label>Filter by Name</label>
         <input

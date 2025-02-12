@@ -15,12 +15,12 @@ function App() {
   });
   const [sortOrder, setSortOrder] = useState("asc");
   const [sortField, setSortField] = useState("name");
-  const [cart, setCart] = useState([]); // Zustand für den Warenkorb
+  const [cart, setCart] = useState([]); // cart State
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(""); // Fehlernachricht für Passwortänderung
-  const [passwordSuccess, setPasswordSuccess] = useState(""); // Erfolgsmeldung
+  const [passwordError, setPasswordError] = useState(""); // failure massage for password change
+  const [passwordSuccess, setPasswordSuccess] = useState(""); // success info
 
   useEffect(() => {
     fetchProducts();
@@ -95,7 +95,7 @@ function App() {
   const handlePasswordChange = async (e) => {
     e.preventDefault();
 
-    // Überprüfen, ob die neuen Passwörter übereinstimmen
+    // check, if the new passwords are similiar
     if (newPassword !== confirmPassword) {
       setPasswordError("New password and confirmation do not match.");
       setPasswordSuccess("");
@@ -235,7 +235,7 @@ function App() {
         </tbody>
       </table>
 
-      {/* Passwortänderungsformular */}
+      {/* Password change form */}
       <h2>Change Password</h2>
       <form onSubmit={handlePasswordChange}>
         <div>
@@ -268,7 +268,7 @@ function App() {
         <button type="submit">Change Password</button>
       </form>
 
-      {/* Fehlermeldung oder Erfolg */}
+      {/* failure massage oder successfully */}
       {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
       {passwordSuccess && <p style={{ color: "green" }}>{passwordSuccess}</p>}
     </div>
