@@ -94,6 +94,8 @@ spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
 # update - if table exists it doesnt delete the table  / if table doesnt exists it creates it
 spring.jpa.hibernate.ddl-auto=update
 
+image.path=/tmp/images/
+
 #sql on my server
 spring.jpa.show-sql=true
 ```
